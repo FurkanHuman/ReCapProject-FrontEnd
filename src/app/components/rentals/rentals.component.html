@@ -1,0 +1,25 @@
+<table>
+    <thead>
+        <th>[id]</th>
+        <th>Marka</th>
+        <th>Renk adı</th>
+        <th>Geri Getirme Tarihi</th>
+        <th>Adı</th>
+        <th>Soyadı</th>
+        <th>E posta Adresi</th>
+        <th>Günlük Kiralama Bedeli</th>
+        <th>Açıklama</th>
+    </thead>
+<tr *ngFor="let rental of rentals" >
+    <td>{{rental.id}}</td>
+    <td>{{rental.brandName}}</td>
+    <td>{{rental.colorName}}</td>
+    <td>{{rental.rentDate}}</td>
+    <td>{{rental.returnDate}}</td>
+    <td>{{rental.firstName}}</td>
+    <td>{{rental.lastName}}</td>
+    <td>{{rental.email}}</td>
+    <td>{{rental.dailyPrice}}</td>
+    <td>{{rental.descriptions}}</td>    
+</tr>
+</table>
