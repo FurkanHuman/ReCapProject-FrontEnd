@@ -8,14 +8,15 @@ import { CarImageService } from 'src/app/services/car-image.service';
   styleUrls: ['./car-image.component.css']
 })
 export class CarImageComponent implements OnInit {
-carImages:CarImage[]=[];
-  constructor(private carImageService:CarImageService) { }
+  carImages: CarImage[] = [];
+  constructor(private carImageService: CarImageService) { }
 
   ngOnInit(): void {
+    this.getCarImages();
   }
-  getCarImages(){
-    this.carImageService.getImages().subscribe(response=>{
-      this.carImages=response.data
+  getCarImages() {
+    this.carImageService.getImages().subscribe(response => {
+      this.carImages = response.data
     })
   }
 

@@ -12,6 +12,7 @@ import { RentalsComponent } from './components/rentals/rentals.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 import { CarImageComponent } from './components/car-image/car-image.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CarImageComponent } from './components/car-image/car-image.component';
     NaviComponent,
     CategoryBarComponent,
     CarImageComponent,
+    CarDetailComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,7 +1,5 @@
 <ul class="list-group">
-    <li [class]="getAllColorClass()" ><strong>Tüm Renkler</strong></li>
-    <li *ngFor="let color of colors" routerLink="car/getbycolor/{{color.id}}"
-    (click)="setCurrentColor(color)"
-    [class]="getCurrentColorClass(color)"
-    >{{color.name}}</li>
+    <li [class]="getAllColorClass()" (click)="CleanCurrentColor()" routerLink="/car"><strong>Tüm Renkler</strong></li>
+    <li *ngFor="let color of colors" routerLink="car/getbycolor/{{color.id}}" [class]="getCurrentColorClass(color)"
+        (click)="setCurrentColor(color)">{{color.name}}</li>
 </ul>
