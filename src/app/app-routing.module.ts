@@ -9,6 +9,7 @@ const routes: Routes =
     { path: "car", component: CarComponent },
     { path: "car/getbycolor/:colorId", component: CarComponent },
     { path: "car/getbybrand/:brandId", component: CarComponent },
+    { path: "car/getbrandandcolorid/brand/:brandId/color/:colorId", component: CarComponent },
     { path: "cars/cardetail/:carId", component: CarDetailComponent }
   ];
 

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +15,12 @@ import { NaviComponent } from './components/navi/navi.component';
 import { CategoryBarComponent } from './components/category-bar/category-bar.component';
 import { CarImageComponent } from './components/car-image/car-image.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
-
+import { CartSumaryComponent } from './components/cart-sumary/cart-sumary.component';
+import { ToastrModule } from 'ngx-toastr';
+import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
+import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
+import { FilterCarPipePipe } from './pipes/filter-car-pipe.pipe';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +34,20 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
     CategoryBarComponent,
     CarImageComponent,
     CarDetailComponent,
+    CartSumaryComponent,
+    FilterColorPipePipe,
+    FilterBrandPipePipe,
+    FilterCarPipePipe,
+    FilterComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    BrowserAnimationsModule,
+    AppRoutingModule, ToastrModule.forRoot({
+      positionClass: "toast-top-right"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

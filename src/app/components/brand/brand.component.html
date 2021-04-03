@@ -1,5 +1,21 @@
+<div class="mb-3">
+  <label for="  filterBrand" class="form-label">Marka Ara</label>
+  <input type="text" [(ngModel)]="  filterBrand" class="form-control" id="  filterBrand"
+    placeholder="Aramak istediğiniz Markayı girin">
+</div>
+<div *ngIf="  filterBrand.length>2" class="alert alert-success">{{filterBrand}} aradınız.</div>
 <ul class="list-group">
   <li [class]="getAllBrandClass()" (click)="CleanCurrentBrand()" routerLink="/car/"><strong>Tüm Markalar</strong></li>
-  <li *ngFor="let brand of brands" routerLink="car/getbybrand/{{brand.id}}" (click)="setCurrentBrand(brand)"
-    [class]="getCurrentBrandClass(brand)">{{brand.name}}</li>
+  <li *ngFor="let brand of brands |filterBrandPipe:filterBrand" routerLink="car/getbybrand/{{brand.id}}"
+    (click)="setCurrentBrand(brand)" [class]="getCurrentBrandClass(brand)">{{brand.name}}</li>
 </ul>
+
+<!--
+<div class="form-floating">
+  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+    <option selected [class]="getAllBrandClass()" (click)="CleanCurrentBrand()" routerLink="/car/"></option>
+    <option *ngFor="let brand of brands" routerLink="car/getbybrand/{{brand.id}}" (click)="setCurrentBrand(brand)"
+      [class]="getCurrentBrandClass(brand)">{{brand.name}}
+    </option>
+  </select>
+</div>-->
