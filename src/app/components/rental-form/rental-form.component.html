@@ -1,12 +1,9 @@
-<div *ngIf="dataLoaded == false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
-<div class="row" *ngIf="dataLoaded != false">
+<div class="row">
     <div class="col-md-12">
         <div class="card" style="width: 38rem;" *ngFor="let car of cars">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div *ngFor="let image of images; let i = index" [ngClass]="getSliderClassName(i)">
+                    <div *ngFor="let image of carImages; let i = index" [ngClass]="getSliderClassName(i)">
                         <img src="{{ imageBasePath }}{{ image.imagePath }}" class="d-block" width="100%" height="100%"
                             alt="..." />
                     </div>
@@ -31,10 +28,22 @@
                     <li class="list-group-item">{{car.colorName}}</li>
                     <li class="list-group-item">{{car.modelYear}}</li>
                     <li class="list-group-item">{{car.dailyPrice | currency:"TRY":"symbol"}}</li>
+                    <li class="list-group-item"> <select [(ngModel)]="customerId" class="form-select">
+                            <option value=0>Kullanıcılar</option>
+                            <option *ngFor="let rental of rentals" value=0>
+                                {{rental.firstName+" "+rental.lastName}}</option>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+
+                        <input type="date" name="" id="">
+
+                    </li>
+
                 </ul>
             </div>
             <button routerLink="/rental/rentalform/{{ car.id }}" type="button" class="btn btn-warning">
-                Kirala
+                buy
             </button>
         </div>
     </div>

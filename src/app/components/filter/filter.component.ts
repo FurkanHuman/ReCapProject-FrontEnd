@@ -14,12 +14,12 @@ import { ColorService } from 'src/app/services/color.service';
 export class FilterComponent implements OnInit {
 
   colors: Color[] = [];
-  colorId: number;
-  brandId: number;
+  colorId: number = 0;
+  brandId: number = 0;
   brands: Brand[] = [];
   cars: Car[] = [];
-  filterBrand: number = 0;
-  filterColor: number = 0;
+  filterBrand: number;
+  filterColor: number;
   constructor(private carService: CarService,
     private colorService: ColorService,
     private brandService: BrandService,) { }
