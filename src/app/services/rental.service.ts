@@ -11,9 +11,14 @@ export class RentalService {
 
   apiUrl = 'https://localhost:44305/api/';
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getRentals():Observable<ListResponseModel<Rental>>{
-   return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl+"rental/getalldto")
+  /* getRentals():Observable<ListResponseModel<Rental>>{
+    return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl+"rental/getalldto")
+   }*/
+
+  getRentalsByCarId(carId: number): Observable<ListResponseModel<Rental>> {
+    return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl + "rentalgetbycarid?id=" + carId)
   }
+
 }

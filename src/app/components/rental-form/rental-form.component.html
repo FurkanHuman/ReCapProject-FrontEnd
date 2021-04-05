@@ -30,14 +30,19 @@
                     <li class="list-group-item">{{car.dailyPrice | currency:"TRY":"symbol"}}</li>
                     <li class="list-group-item"> <select [(ngModel)]="customerId" class="form-select">
                             <option value=0>Kullanıcılar</option>
-                            <option *ngFor="let rental of rentals" value=0>
-                                {{rental.firstName+" "+rental.lastName}}</option>
+                            <option *ngFor="let customer of customers" value=0>
+                                {{customer.companyName}}</option>
                         </select>
                     </li>
                     <li class="list-group-item">
-
-                        <input type="date" name="" id="">
-
+                        <strong>Kiralama Tarihi: </strong>
+                        <input (change)="onChangeEvent($event)" min="{{ minimumDate() }}" [(ngModel)]="rentDate"
+                            type="date" class="form-control" id="rent-date" placeholder="Bir gün seçiniz." />
+                    </li>
+                    <li class="list-group-item">
+                        <strong>geri Getirme Tarihi: </strong> <input (change)="onChangeEvent($event)"
+                            min="{{ minimumDate() }}" [(ngModel)]="returnDate" type="date" class="form-control"
+                            id="rent-date" placeholder="Bir gün seçiniz." />
                     </li>
 
                 </ul>

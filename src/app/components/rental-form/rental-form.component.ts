@@ -1,5 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { Customer } from 'src/app/models/Customer';
@@ -13,24 +15,30 @@ import { RentalService } from 'src/app/services/rental.service';
 @Component({
   selector: 'app-rental-form',
   templateUrl: './rental-form.component.html',
-  styleUrls: ['./rental-form.component.css']
+  styleUrls: ['./rental-form.component.css'],
+  providers: [DatePipe]
 })
 export class RentalFormComponent implements OnInit {
   customerId: number = 0;
   carImages: CarImage[] = [];
   cars: Car[] = [];
   rentals: Rental[] = []
+  customers: Customer[] = []
   rentDate: Date;
   returnDate: Date;
   imageBasePath = 'https://localhost:44305'
+  minDate: string;
+  firstDateSelected: boolean;
 
 
   constructor(
+    private toasterService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private carService: CarService,
     private carImageService: CarImageService,
     private customerService: CustomerService,
-    private rentalservice: RentalService
+    private datePipe: DatePipe,
+    private rentalservice: RentalService,
   ) { }
 
   ngOnInit(): void {
@@ -56,8 +64,8 @@ export class RentalFormComponent implements OnInit {
   }
 
   getAllCustomers() {
-    this.rentalservice.getRentals().subscribe((response) => {
-      this.rentals = response.data;
+    this.customerService.getCustomers().subscribe((response) => {
+      this.customers = response.data;
     })
   }
 
@@ -67,5 +75,25 @@ export class RentalFormComponent implements OnInit {
     } else {
       return 'carousel-item';
     }
+  }
+  minimumDate() {
+    this.minDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    return this.minDate;
+  }
+  onChangeEvent(event: any) {
+    this.minDate = event.target.value;
+    this.firstDateSelected = true;
+  }
+
+  checkIfCarRental(carId: number) {
+    this.rentalservice.getRentalsByCarId(carId).subscribe((response) => {
+      this.rentals = response.data;
+      this.rentals.map((rent) => {
+        if (rent.returnDate == null || this.rentDate > rent.returnDate) {
+          return true
+        }
+        return this.toasterService.error("bu araç şu an kullanılıyor")
+      })
+    })
   }
 }
